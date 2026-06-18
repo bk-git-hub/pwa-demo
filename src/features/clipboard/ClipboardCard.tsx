@@ -6,7 +6,7 @@ import type { FeatureResult, PermissionStateLabel } from '../../shared/types/fea
 import { queryPermission } from '../permissions/permissions';
 import { clipboardSupport, copyText } from './clipboard';
 
-const DEMO_TEXT = 'Copied from the pwa-demo clipboard module.';
+const DEMO_TEXT = 'pwa-demo 클립보드 모듈에서 복사한 문장입니다.';
 
 export function ClipboardCard() {
   const [permission, setPermission] = useState<PermissionStateLabel>('unknown');
@@ -21,19 +21,19 @@ export function ClipboardCard() {
   return (
     <ApiCard
       id="clipboard"
-      title="Clipboard"
-      description="Copy demo text with navigator.clipboard.writeText after a user action."
+      title="클립보드"
+      description="사용자 클릭 이후 navigator.clipboard.writeText로 데모 문장을 복사합니다."
       support={support}
       permission={permission}
-      note="Clipboard access requires HTTPS and usually a user gesture. Read access is more restricted than write."
+      note="클립보드는 HTTPS와 사용자 제스처가 거의 항상 필요합니다. 읽기 권한은 쓰기보다 더 엄격합니다."
       tone="blue"
     >
       <div className="actions">
         <PrimaryButton disabled={support === 'unsupported'} onClick={copy}>
-          Copy demo text
+          데모 문장 복사
         </PrimaryButton>
       </div>
-      <ResultBox result={result} title="Clipboard result" />
+      <ResultBox result={result} title="클립보드 결과" />
     </ApiCard>
   );
 }

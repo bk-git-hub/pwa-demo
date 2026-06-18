@@ -36,7 +36,7 @@ export function CameraCard() {
       setPermission('granted');
       return;
     }
-    setError(result.error ?? 'Camera could not start.');
+    setError(result.error ?? '카메라를 시작할 수 없습니다.');
     setPermission('denied');
   };
 
@@ -51,33 +51,33 @@ export function CameraCard() {
       setCapture(result.data);
       return;
     }
-    setError(result.error ?? 'Capture failed.');
+    setError(result.error ?? '사진 캡처에 실패했습니다.');
   };
 
   return (
     <ApiCard
       id="camera"
-      title="Camera"
-      description="Request camera permission, show a live preview, and capture a still image."
+      title="카메라"
+      description="getUserMedia로 카메라 권한을 요청하고, 실시간 미리보기와 정지 화면 캡처를 실습합니다."
       support={support}
       permission={permission}
-      note="Requires HTTPS except on localhost. Streams are stopped when the camera closes or the card unmounts."
+      note="localhost를 제외하면 HTTPS가 필요합니다. 카메라를 끄거나 카드가 사라지면 MediaStreamTrack을 정리합니다."
       tone="teal"
     >
       <video className="mediaPreview" ref={videoRef} autoPlay muted playsInline />
       <div className="actions">
         <PrimaryButton disabled={support === 'unsupported' || loading || Boolean(stream)} onClick={openCamera}>
-          {loading ? 'Starting...' : 'Start camera'}
+          {loading ? '시작 중...' : '카메라 시작'}
         </PrimaryButton>
         <PrimaryButton disabled={!stream} variant="secondary" onClick={takePhoto}>
-          Capture still
+          사진 캡처
         </PrimaryButton>
         <PrimaryButton disabled={!stream} variant="danger" onClick={closeCamera}>
-          Stop
+          정지
         </PrimaryButton>
       </div>
-      {capture ? <img className="mediaPreview" src={capture.dataUrl} alt="Captured camera frame" /> : null}
-      <ResultBox title="Camera result">
+      {capture ? <img className="mediaPreview" src={capture.dataUrl} alt="캡처한 카메라 화면" /> : null}
+      <ResultBox title="카메라 결과">
         <pre>
           {JSON.stringify(
             {

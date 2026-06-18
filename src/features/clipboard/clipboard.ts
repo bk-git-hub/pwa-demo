@@ -6,13 +6,13 @@ export function clipboardSupport(): FeatureSupport {
 
 export async function copyText(text: string): Promise<FeatureResult<{ copiedText: string; copiedAt: string }>> {
   if (clipboardSupport() === 'unsupported') {
-    return { ok: false, error: 'Clipboard write is not supported in this browser.' };
+    return { ok: false, error: '이 브라우저는 클립보드 쓰기를 지원하지 않습니다.' };
   }
 
   try {
     await navigator.clipboard.writeText(text);
     return { ok: true, data: { copiedText: text, copiedAt: new Date().toISOString() } };
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'Clipboard write failed.' };
+    return { ok: false, error: error instanceof Error ? error.message : '클립보드 쓰기에 실패했습니다.' };
   }
 }

@@ -21,7 +21,7 @@ export async function inspectPush(registration?: ServiceWorkerRegistration): Pro
         supported: false,
         hasServiceWorker: Boolean(registration),
         hasSubscription: false,
-        note: 'Push API is not supported in this browser.',
+        note: '이 브라우저는 Push API를 지원하지 않습니다.',
       },
     };
   }
@@ -34,7 +34,7 @@ export async function inspectPush(registration?: ServiceWorkerRegistration): Pro
       hasServiceWorker: Boolean(registration),
       hasSubscription: Boolean(subscription),
       subscription: subscription?.toJSON(),
-      note: 'Real remote push needs a backend endpoint and VAPID keys. This demo does not fake remote push.',
+      note: '실제 원격 push는 백엔드 엔드포인트와 VAPID 키가 필요합니다. 이 데모는 원격 push를 흉내 내지 않습니다.',
     },
   };
 }

@@ -36,22 +36,22 @@ export function NotificationsCard({ serviceWorker }: NotificationsCardProps) {
   return (
     <ApiCard
       id="notifications"
-      title="Notifications"
-      description="Request permission from a user action and show a local notification through the service worker."
+      title="알림"
+      description="사용자 클릭 이후 알림 권한을 요청하고, service worker를 통해 로컬 알림을 표시합니다."
       support={support}
       permission={permission}
-      note="Do not request notification permission on page load. Mobile, desktop, Android, and iOS behavior differs."
+      note="페이지 로드 시점에 알림 권한을 요청하지 마세요. 데스크톱, Android, iOS에서 동작이 다릅니다."
       tone="orange"
     >
       <div className="actions">
         <PrimaryButton disabled={support === 'unsupported'} onClick={requestPermission}>
-          Request permission
+          권한 요청
         </PrimaryButton>
         <PrimaryButton disabled={permission !== 'granted'} variant="secondary" onClick={notify}>
-          Show notification
+          알림 표시
         </PrimaryButton>
       </div>
-      <ResultBox result={result} title="Notification result" />
+      <ResultBox result={result} title="알림 결과" />
     </ApiCard>
   );
 }

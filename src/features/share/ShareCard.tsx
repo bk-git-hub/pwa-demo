@@ -17,15 +17,15 @@ export function ShareCard() {
     <ApiCard
       id="share"
       title="Web Share"
-      description="Open the native share sheet where available, with clipboard fallback on unsupported browsers."
+      description="지원되는 환경에서는 네이티브 공유 시트를 열고, 미지원 브라우저에서는 클립보드 fallback을 사용합니다."
       support={support}
-      note="Web Share has strongest support on mobile and must be triggered by a user action."
+      note="Web Share는 모바일 지원이 가장 좋고, 반드시 사용자 액션에서 실행해야 합니다."
       tone="teal"
     >
       <div className="actions">
-        <PrimaryButton onClick={share}>Share this app</PrimaryButton>
+        <PrimaryButton onClick={share}>이 앱 공유</PrimaryButton>
       </div>
-      <ResultBox result={result} title="Share result" />
+      <ResultBox result={result} title="공유 결과" />
     </ApiCard>
   );
 }

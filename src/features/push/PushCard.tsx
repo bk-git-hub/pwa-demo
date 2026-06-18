@@ -21,16 +21,16 @@ export function PushCard({ serviceWorker }: PushCardProps) {
   return (
     <ApiCard
       id="push"
-      title="Push Notifications"
-      description="Check Push API support and explain what a real backend subscription flow needs."
+      title="Push 알림"
+      description="Push API 지원 여부를 확인하고, 실제 구독 흐름에 필요한 백엔드 요소를 설명합니다."
       support={support}
-      note="This module is intentionally advanced. It does not fake remote push without a backend and VAPID keys."
+      note="이 모듈은 고급 실습용입니다. 백엔드와 VAPID 키 없이 원격 push를 가짜로 만들지 않습니다."
       tone="gray"
     >
       <div className="actions">
-        <PrimaryButton onClick={inspect}>Check push support</PrimaryButton>
+        <PrimaryButton onClick={inspect}>Push 지원 확인</PrimaryButton>
       </div>
-      <ResultBox result={result} title="Push status" />
+      <ResultBox result={result} title="Push 상태" />
     </ApiCard>
   );
 }

@@ -7,7 +7,7 @@ type ResultBoxProps<T> = {
   children?: ReactNode;
 };
 
-export function ResultBox<T>({ title = 'Result', result, children }: ResultBoxProps<T>) {
+export function ResultBox<T>({ title = '결과', result, children }: ResultBoxProps<T>) {
   if (children) {
     return (
       <div className="resultBox">
@@ -21,14 +21,14 @@ export function ResultBox<T>({ title = 'Result', result, children }: ResultBoxPr
     return (
       <div className="resultBox muted">
         <strong>{title}</strong>
-        <span>No result yet.</span>
+        <span>아직 실행 결과가 없습니다.</span>
       </div>
     );
   }
 
   return (
     <div className={`resultBox ${result.ok ? 'successResult' : 'errorResult'}`}>
-      <strong>{result.ok ? title : 'Error'}</strong>
+      <strong>{result.ok ? title : '오류'}</strong>
       <pre>{result.ok ? JSON.stringify(result.data, null, 2) : result.error}</pre>
     </div>
   );

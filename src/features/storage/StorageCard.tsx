@@ -44,7 +44,7 @@ export function StorageCard() {
 
   const save = async () => {
     const trimmed = note.trim();
-    const next = trimmed ? await saveRecord(trimmed) : { ok: false, error: 'Write a note first.' };
+    const next = trimmed ? await saveRecord(trimmed) : { ok: false, error: '먼저 메모를 입력해 주세요.' };
     setResult(next);
     if (next.ok) {
       setNote('');
@@ -69,28 +69,28 @@ export function StorageCard() {
   return (
     <ApiCard
       id="storage"
-      title="Local Storage / IndexedDB"
-      description="Save a draft in localStorage and structured history records in IndexedDB."
+      title="로컬 저장소 / IndexedDB"
+      description="간단한 임시 메모는 localStorage에, 구조화된 기록은 IndexedDB에 저장합니다."
       support={support}
-      note="Use localStorage for tiny simple values and IndexedDB for larger structured data or files."
+      note="작고 단순한 값은 localStorage, 더 큰 구조화 데이터나 파일은 IndexedDB가 어울립니다."
       tone="green"
     >
       <textarea
-        aria-label="Storage demo note"
+        aria-label="저장소 데모 메모"
         className="textInput"
-        placeholder="Write a short note to store locally."
+        placeholder="로컬에 저장할 짧은 메모를 입력하세요."
         value={note}
         onChange={(event) => updateNote(event.target.value)}
       />
       <div className="actions">
         <PrimaryButton disabled={support === 'unsupported'} onClick={save}>
-          Save note
+          메모 저장
         </PrimaryButton>
         <PrimaryButton disabled={records.length === 0 && note.length === 0} variant="danger" onClick={clear}>
-          Clear data
+          데이터 지우기
         </PrimaryButton>
       </div>
-      <ResultBox title="Stored records">
+      <ResultBox title="저장된 기록">
         {records.length > 0 ? (
           <ul className="historyList">
             {records.slice(0, 3).map((record) => (

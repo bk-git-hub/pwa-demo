@@ -35,7 +35,7 @@ export function GalleryCard() {
     if (result.ok && result.data) {
       replaceImage(result.data);
     } else {
-      setError(result.error ?? 'Could not load file.');
+      setError(result.error ?? '파일을 불러올 수 없습니다.');
     }
   };
 
@@ -44,30 +44,30 @@ export function GalleryCard() {
     if (result.ok && result.data) {
       replaceImage(result.data);
     } else {
-      setError(result.error ?? 'Advanced picker failed.');
+      setError(result.error ?? '고급 파일 선택에 실패했습니다.');
     }
   };
 
   return (
     <ApiCard
       id="gallery"
-      title="Gallery / File Picker"
-      description="Pick an image, preview it, and inspect file metadata."
+      title="갤러리 / 파일 선택"
+      description="이미지를 선택하고 미리보기와 파일 이름, 타입, 크기를 확인합니다."
       support={support}
-      note="A regular file input is most compatible. File System Access is useful but not universal."
+      note="일반 file input이 가장 호환성이 좋습니다. File System Access API는 유용하지만 모든 브라우저에서 지원되지는 않습니다."
       tone="orange"
     >
       <input ref={inputRef} hidden type="file" accept="image/*" onChange={onInputChange} />
       {image ? <img className="mediaPreview" src={image.url} alt={image.name} /> : <div className="mediaPreview" />}
       <div className="actions">
         <PrimaryButton disabled={support === 'unsupported'} onClick={() => inputRef.current?.click()}>
-          Choose image
+          이미지 선택
         </PrimaryButton>
         <PrimaryButton disabled={advancedSupport === 'unsupported'} variant="secondary" onClick={useAdvancedPicker}>
-          Advanced picker
+          고급 선택
         </PrimaryButton>
       </div>
-      <ResultBox title="Selected file">
+      <ResultBox title="선택한 파일">
         <pre>
           {JSON.stringify(
             image

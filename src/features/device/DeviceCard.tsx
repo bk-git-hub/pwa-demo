@@ -63,27 +63,27 @@ export function DeviceCard() {
   return (
     <ApiCard
       id="device"
-      title="Modern Device APIs"
-      description="Try optional APIs such as orientation, vibration, wake lock, and app badging."
+      title="최신 디바이스 API"
+      description="기기 방향, 진동, Wake Lock, 앱 배지처럼 선택적으로 쓸 수 있는 API를 실습합니다."
       support={support}
-      note="These APIs are progressive enhancements. Support varies heavily by browser, platform, and installed-app context."
+      note="이 API들은 점진적 향상 기능입니다. 브라우저, 플랫폼, 설치 앱 여부에 따라 지원 차이가 큽니다."
       tone="red"
     >
       <div className="actions">
         <PrimaryButton variant="secondary" onClick={toggleOrientation}>
-          {watching ? 'Stop tilt' : 'Watch tilt'}
+          {watching ? '기울기 중지' : '기울기 보기'}
         </PrimaryButton>
         <PrimaryButton variant="secondary" onClick={() => setResult(vibrateDemo())}>
-          Vibrate
+          진동
         </PrimaryButton>
         <PrimaryButton variant="secondary" onClick={wake}>
-          Wake lock
+          화면 켜두기
         </PrimaryButton>
         <PrimaryButton variant="secondary" onClick={badge}>
-          Set badge
+          배지 설정
         </PrimaryButton>
       </div>
-      <ResultBox title="Device result">
+      <ResultBox title="디바이스 결과">
         <pre>{JSON.stringify({ orientation: reading, result }, null, 2)}</pre>
       </ResultBox>
     </ApiCard>

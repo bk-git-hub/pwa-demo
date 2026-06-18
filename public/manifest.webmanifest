@@ -1,7 +1,7 @@
 {
-  "name": "pwa-demo classroom Web API demo",
+  "name": "pwa-demo 교실용 Web API 실습",
   "short_name": "pwa-demo",
-  "description": "A classroom-friendly Progressive Web App demo for install, offline, camera, location, notifications, sharing, clipboard, and storage APIs.",
+  "description": "설치, 오프라인, 카메라, 위치, 알림, 공유, 클립보드, 저장소 API를 실습하는 교실용 Progressive Web App 데모입니다.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -28,16 +28,16 @@
   ],
   "shortcuts": [
     {
-      "name": "Open Camera Demo",
-      "short_name": "Camera",
-      "description": "Try the camera permission and preview demo.",
+      "name": "카메라 데모 열기",
+      "short_name": "카메라",
+      "description": "카메라 권한 요청과 미리보기를 실습합니다.",
       "url": "/?feature=camera",
       "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Check Offline Status",
-      "short_name": "Offline",
-      "description": "Open the network and offline behavior demo.",
+      "name": "오프라인 상태 확인",
+      "short_name": "오프라인",
+      "description": "네트워크 상태와 오프라인 동작을 실습합니다.",
       "url": "/?feature=offline",
       "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     }

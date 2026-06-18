@@ -95,7 +95,7 @@ export function registerServiceWorker(onChange: (state: ServiceWorkerUiState) =>
         enabled: true,
         registered: false,
         updateAvailable: false,
-        error: error instanceof Error ? error.message : 'Service worker registration failed.',
+        error: error instanceof Error ? error.message : '서비스 워커 등록에 실패했습니다.',
       });
     }
   };

@@ -31,8 +31,8 @@ export function ApiCard({
           <p>{description}</p>
         </div>
         <div className="pillStack">
-          <StatusPill label="Support" value={support} />
-          {permission ? <StatusPill label="Permission" value={permission} /> : null}
+          <StatusPill label="지원" value={support} />
+          {permission ? <StatusPill label="권한" value={permission} /> : null}
         </div>
       </div>
       <div className="apiCardBody">{children}</div>

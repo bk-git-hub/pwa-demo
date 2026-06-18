@@ -58,7 +58,7 @@ self.addEventListener('fetch', (event) => {
         })
         .catch(async () => {
           const cached = await caches.match('/index.html');
-          return cached ?? new Response('Offline page is not cached yet.', { status: 503 });
+          return cached ?? new Response('아직 오프라인 페이지가 캐시되지 않았습니다.', { status: 503 });
         }),
     );
     return;
@@ -85,7 +85,7 @@ self.addEventListener('fetch', (event) => {
         })
         .catch(async () => {
           const cached = await caches.match(request);
-          return cached ?? new Response('Resource is not cached for offline use.', { status: 503 });
+          return cached ?? new Response('이 리소스는 아직 오프라인용으로 캐시되지 않았습니다.', { status: 503 });
         });
     }),
   );

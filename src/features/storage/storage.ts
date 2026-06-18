@@ -22,7 +22,7 @@ export function loadDraft(): FeatureResult<string> {
   try {
     return { ok: true, data: localStorage.getItem(DRAFT_KEY) ?? '' };
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'Could not read localStorage.' };
+    return { ok: false, error: error instanceof Error ? error.message : 'localStorage를 읽을 수 없습니다.' };
   }
 }
 
@@ -31,7 +31,7 @@ export function saveDraft(value: string): FeatureResult<{ saved: boolean }> {
     localStorage.setItem(DRAFT_KEY, value);
     return { ok: true, data: { saved: true } };
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'Could not write localStorage.' };
+    return { ok: false, error: error instanceof Error ? error.message : 'localStorage에 쓸 수 없습니다.' };
   }
 }
 
@@ -69,7 +69,7 @@ async function withStore<T>(mode: IDBTransactionMode, action: (store: IDBObjectS
 
 export async function saveRecord(note: string): Promise<FeatureResult<DemoRecord>> {
   if (storageSupport() === 'unsupported') {
-    return { ok: false, error: 'localStorage or IndexedDB is not supported.' };
+    return { ok: false, error: 'localStorage 또는 IndexedDB를 지원하지 않습니다.' };
   }
 
   const record: DemoRecord = { id: crypto.randomUUID(), note, createdAt: new Date().toISOString() };
@@ -77,26 +77,26 @@ export async function saveRecord(note: string): Promise<FeatureResult<DemoRecord
     await withStore('readwrite', (store) => store.put(record));
     return { ok: true, data: record };
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'Could not save record.' };
+    return { ok: false, error: error instanceof Error ? error.message : '기록을 저장할 수 없습니다.' };
   }
 }
 
 export async function listRecords(): Promise<FeatureResult<DemoRecord[]>> {
   if (storageSupport() === 'unsupported') {
-    return { ok: false, error: 'localStorage or IndexedDB is not supported.' };
+    return { ok: false, error: 'localStorage 또는 IndexedDB를 지원하지 않습니다.' };
   }
 
   try {
     const records = await withStore<DemoRecord[]>('readonly', (store) => store.getAll());
     return { ok: true, data: records.sort((a, b) => b.createdAt.localeCompare(a.createdAt)) };
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'Could not read records.' };
+    return { ok: false, error: error instanceof Error ? error.message : '저장된 기록을 읽을 수 없습니다.' };
   }
 }
 
 export async function clearRecords(): Promise<FeatureResult<{ cleared: boolean }>> {
   if (storageSupport() === 'unsupported') {
-    return { ok: false, error: 'localStorage or IndexedDB is not supported.' };
+    return { ok: false, error: 'localStorage 또는 IndexedDB를 지원하지 않습니다.' };
   }
 
   try {
@@ -104,6 +104,6 @@ export async function clearRecords(): Promise<FeatureResult<{ cleared: boolean }
     await withStore('readwrite', (store) => store.clear());
     return { ok: true, data: { cleared: true } };
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'Could not clear records.' };
+    return { ok: false, error: error instanceof Error ? error.message : '저장된 기록을 지울 수 없습니다.' };
   }
 }

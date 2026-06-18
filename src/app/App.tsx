@@ -69,16 +69,16 @@ export function App() {
             <span className="brandMark">P</span>
             <div>
               <h1>pwa-demo</h1>
-              <p>Progressive Web App classroom lab</p>
+              <p>교실에서 바로 쓰는 PWA 실습실</p>
             </div>
           </div>
           <div className="headerStatus">
-            <StatusPill label="Install" value={isStandalone ? 'ready' : 'unknown'} />
-            <StatusPill label="Network" value={network.online ? 'online' : 'offline'} />
+            <StatusPill label="설치" value={isStandalone ? 'ready' : 'unknown'} />
+            <StatusPill label="네트워크" value={network.online ? 'online' : 'offline'} />
             <StatusPill label="SW" value={serviceWorkerValue} />
             {serviceWorker.updateAvailable ? (
               <PrimaryButton variant="secondary" onClick={() => applyServiceWorkerUpdate(serviceWorker.registration)}>
-                Update
+                업데이트
               </PrimaryButton>
             ) : null}
           </div>
@@ -88,23 +88,23 @@ export function App() {
       <main className="content">
         <section className="intro">
           <div>
-            <h2>Installable PWA demos for native-like Web APIs.</h2>
+            <h2>설치형 PWA와 브라우저 Web API를 한 화면에서 실습합니다.</h2>
             <p>
-              Clone, deploy to HTTPS, open on mobile, install, and test browser APIs with clear success, error,
-              permission, support, and cleanup behavior.
+              저장소를 클론하고 HTTPS로 배포한 뒤 모바일에서 설치해 보세요. 성공, 오류, 권한, 지원 여부,
+              정리(cleanup)까지 학생들이 눈으로 확인할 수 있게 구성했습니다.
             </p>
           </div>
-          <aside className="noticePanel" aria-label="Browser security notes">
-            <strong>Classroom checks</strong>
+          <aside className="noticePanel" aria-label="브라우저 보안 안내">
+            <strong>수업 전 확인</strong>
             <ul>
-              <li>Most APIs require HTTPS; localhost is treated as secure.</li>
-              <li>Netlify and Vercel provide HTTPS after deployment.</li>
-              <li>Unsupported browsers show friendly fallback states.</li>
+              <li>대부분의 API는 HTTPS가 필요하고, localhost는 보통 안전한 환경으로 취급됩니다.</li>
+              <li>Netlify와 Vercel은 배포 후 HTTPS를 기본으로 제공합니다.</li>
+              <li>지원하지 않는 브라우저에서도 앱이 깨지지 않고 안내를 보여줍니다.</li>
             </ul>
           </aside>
         </section>
 
-        <section className="cardGrid" aria-label="Web API demo cards">
+        <section className="cardGrid" aria-label="Web API 실습 카드">
           <InstallCard />
           <OfflineCard />
           <CameraCard />

@@ -35,7 +35,7 @@ export function LocationCard() {
       setPermission('granted');
       return;
     }
-    setError(result.error ?? 'Location request failed.');
+    setError(result.error ?? '위치 요청에 실패했습니다.');
     setPermission('denied');
   };
 
@@ -46,7 +46,7 @@ export function LocationCard() {
       setWatchId(result.data);
       setPermission('granted');
     } else {
-      setError(result.error ?? 'Could not start location watch.');
+      setError(result.error ?? '위치 추적을 시작할 수 없습니다.');
     }
   };
 
@@ -58,25 +58,25 @@ export function LocationCard() {
   return (
     <ApiCard
       id="location"
-      title="Location / GPS"
-      description="Request current coordinates and optionally watch live location updates."
+      title="위치 / GPS"
+      description="현재 좌표를 요청하고, 선택적으로 실시간 위치 변화를 watchPosition으로 확인합니다."
       support={support}
       permission={permission}
-      note="Requires HTTPS except on localhost. Browser settings or permissions policy can block access."
+      note="localhost를 제외하면 HTTPS가 필요합니다. 브라우저 설정이나 Permissions Policy가 접근을 막을 수 있습니다."
       tone="green"
     >
       <div className="actions">
         <PrimaryButton disabled={support === 'unsupported' || loading} onClick={getLocation}>
-          {loading ? 'Locating...' : 'Get current location'}
+          {loading ? '위치 확인 중...' : '현재 위치 가져오기'}
         </PrimaryButton>
         <PrimaryButton disabled={support === 'unsupported' || Boolean(watchId)} variant="secondary" onClick={startWatch}>
-          Watch
+          추적 시작
         </PrimaryButton>
         <PrimaryButton disabled={!watchId} variant="danger" onClick={stopWatch}>
-          Stop watch
+          추적 중지
         </PrimaryButton>
       </div>
-      <ResultBox title="Location result">
+      <ResultBox title="위치 결과">
         <pre>
           {JSON.stringify({ reading, watchActive: Boolean(watchId), error }, null, 2)}
         </pre>

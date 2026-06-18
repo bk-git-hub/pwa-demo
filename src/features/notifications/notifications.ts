@@ -17,14 +17,14 @@ export function currentNotificationPermission(): PermissionStateLabel {
 
 export async function requestNotificationPermission(): Promise<FeatureResult<PermissionStateLabel>> {
   if (!('Notification' in window)) {
-    return { ok: false, error: 'Notifications are not supported in this browser.' };
+    return { ok: false, error: '이 브라우저는 Notifications API를 지원하지 않습니다.' };
   }
 
   try {
     const permission = await Notification.requestPermission();
     return { ok: true, data: mapNotificationPermission(permission) };
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'Notification request failed.' };
+    return { ok: false, error: error instanceof Error ? error.message : '알림 권한 요청에 실패했습니다.' };
   }
 }
 
@@ -32,18 +32,18 @@ export async function showLocalNotification(
   registration?: ServiceWorkerRegistration,
 ): Promise<FeatureResult<{ title: string; shownAt: string }>> {
   if (notificationSupport() === 'unsupported') {
-    return { ok: false, error: 'Notifications require Notification and Service Worker support.' };
+    return { ok: false, error: '알림은 Notification과 Service Worker 지원이 모두 필요합니다.' };
   }
   if (Notification.permission !== 'granted') {
-    return { ok: false, error: 'Notification permission is not granted.' };
+    return { ok: false, error: '알림 권한이 아직 허용되지 않았습니다.' };
   }
   if (!registration?.showNotification) {
-    return { ok: false, error: 'A registered service worker is required to show this notification.' };
+    return { ok: false, error: '이 알림을 표시하려면 등록된 service worker가 필요합니다.' };
   }
 
-  const title = 'pwa-demo notification';
+  const title = 'pwa-demo 알림';
   await registration.showNotification(title, {
-    body: 'This local notification was shown through the service worker registration.',
+    body: '이 로컬 알림은 service worker registration을 통해 표시되었습니다.',
     icon: '/icons/icon-192.png',
     badge: '/icons/icon-192.png',
     tag: 'pwa-demo-local',

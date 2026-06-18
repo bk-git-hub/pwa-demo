@@ -32,7 +32,7 @@ export async function requestOrientationPermission(): Promise<FeatureResult<Perm
   const orientation = (window as Window & { DeviceOrientationEvent?: DeviceOrientationConstructor })
     .DeviceOrientationEvent;
   if (!orientation) {
-    return { ok: false, error: 'Device orientation is not supported.' };
+    return { ok: false, error: '이 브라우저는 Device Orientation을 지원하지 않습니다.' };
   }
   if (!orientation.requestPermission) {
     return { ok: true, data: 'granted' };
@@ -41,7 +41,7 @@ export async function requestOrientationPermission(): Promise<FeatureResult<Perm
   try {
     return { ok: true, data: await orientation.requestPermission() };
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'Orientation permission failed.' };
+    return { ok: false, error: error instanceof Error ? error.message : '기기 방향 권한 요청에 실패했습니다.' };
   }
 }
 
@@ -55,7 +55,7 @@ export function subscribeOrientation(callback: (reading: OrientationReading) => 
 
 export function vibrateDemo(): FeatureResult<{ vibrated: boolean }> {
   if (!navigator.vibrate) {
-    return { ok: false, error: 'Vibration API is not supported here.' };
+    return { ok: false, error: '이 환경에서는 Vibration API를 지원하지 않습니다.' };
   }
   return { ok: true, data: { vibrated: navigator.vibrate([80, 40, 80]) } };
 }
@@ -63,26 +63,26 @@ export function vibrateDemo(): FeatureResult<{ vibrated: boolean }> {
 export async function requestWakeLock(): Promise<FeatureResult<WakeLockSentinelLike>> {
   const wakeLock = (navigator as NavigatorWithWakeLock).wakeLock;
   if (!wakeLock) {
-    return { ok: false, error: 'Wake Lock API is not supported here.' };
+    return { ok: false, error: '이 환경에서는 Wake Lock API를 지원하지 않습니다.' };
   }
 
   try {
     return { ok: true, data: await wakeLock.request('screen') };
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'Wake lock request failed.' };
+    return { ok: false, error: error instanceof Error ? error.message : 'Wake Lock 요청에 실패했습니다.' };
   }
 }
 
 export async function setDemoBadge(count: number): Promise<FeatureResult<{ count: number }>> {
   const nav = navigator as NavigatorWithWakeLock;
   if (!nav.setAppBadge) {
-    return { ok: false, error: 'App Badging API is not supported here.' };
+    return { ok: false, error: '이 환경에서는 App Badging API를 지원하지 않습니다.' };
   }
 
   try {
     await nav.setAppBadge(count);
     return { ok: true, data: { count } };
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'App badge request failed.' };
+    return { ok: false, error: error instanceof Error ? error.message : '앱 배지 설정에 실패했습니다.' };
   }
 }

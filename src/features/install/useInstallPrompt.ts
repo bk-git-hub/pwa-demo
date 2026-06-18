@@ -47,7 +47,7 @@ export function useInstallPrompt() {
 
   const promptInstall = useCallback(async () => {
     if (!promptEvent) {
-      setState((current) => ({ ...current, error: 'Install prompt is not available in this browser yet.' }));
+      setState((current) => ({ ...current, error: '이 브라우저에서는 아직 설치 프롬프트를 사용할 수 없습니다.' }));
       return;
     }
 
@@ -59,9 +59,9 @@ export function useInstallPrompt() {
 
   const note = useMemo(() => {
     if (state.isInstalled) {
-      return 'The app appears to be running in standalone mode.';
+      return '앱이 standalone 모드로 실행 중인 것으로 보입니다.';
     }
-    return 'Chrome and Edge expose beforeinstallprompt. iOS Safari uses Share > Add to Home Screen.';
+    return 'Chrome과 Edge는 beforeinstallprompt를 제공합니다. iOS Safari는 공유 > 홈 화면에 추가를 사용합니다.';
   }, [state.isInstalled]);
 
   return { ...state, promptInstall, note };

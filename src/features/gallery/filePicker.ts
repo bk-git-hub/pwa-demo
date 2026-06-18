@@ -22,7 +22,7 @@ export function fileSystemPickerSupport(): FeatureSupport {
 
 export function createImagePreview(file: File, source: PickedImage['source']): FeatureResult<PickedImage> {
   if (!file.type.startsWith('image/')) {
-    return { ok: false, error: 'Please choose an image file.' };
+    return { ok: false, error: '이미지 파일을 선택해 주세요.' };
   }
 
   return {
@@ -45,7 +45,7 @@ export function revokeImagePreview(image?: PickedImage | null) {
 
 export async function pickWithFileSystemAccess(): Promise<FeatureResult<PickedImage>> {
   if (fileSystemPickerSupport() === 'unsupported') {
-    return { ok: false, error: 'File System Access API is not supported in this browser.' };
+    return { ok: false, error: '이 브라우저는 File System Access API를 지원하지 않습니다.' };
   }
 
   try {
@@ -56,6 +56,6 @@ export async function pickWithFileSystemAccess(): Promise<FeatureResult<PickedIm
     const file = await handle.getFile();
     return createImagePreview(file, 'file-system-access');
   } catch (error) {
-    return { ok: false, error: error instanceof Error ? error.message : 'File picker was cancelled.' };
+    return { ok: false, error: error instanceof Error ? error.message : '파일 선택이 취소되었습니다.' };
   }
 }
