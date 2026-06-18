@@ -79,6 +79,10 @@ export async function setDemoBadge(count: number): Promise<FeatureResult<{ count
     return { ok: false, error: 'App Badging API is not supported here.' };
   }
 
-  await nav.setAppBadge(count);
-  return { ok: true, data: { count } };
+  try {
+    await nav.setAppBadge(count);
+    return { ok: true, data: { count } };
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : 'App badge request failed.' };
+  }
 }

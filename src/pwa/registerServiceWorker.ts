@@ -14,9 +14,40 @@ const initialState: ServiceWorkerUiState = {
   updateAvailable: false,
 };
 
+const BASE_APP_SHELL = [
+  '/',
+  '/index.html',
+  '/manifest.webmanifest',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
+  '/icons/maskable-icon-512.png',
+];
+
 function shouldRegister() {
   const localOverride = new URLSearchParams(window.location.search).get('sw') === '1';
   return import.meta.env.PROD || import.meta.env.VITE_ENABLE_SW === 'true' || localOverride;
+}
+
+function collectCurrentAppShellUrls() {
+  const urls = new Set(BASE_APP_SHELL);
+  const assets = document.querySelectorAll<HTMLLinkElement | HTMLScriptElement>(
+    'script[src], link[rel="stylesheet"][href], link[rel="manifest"][href], link[rel~="icon"][href], link[rel="apple-touch-icon"][href]',
+  );
+
+  assets.forEach((asset) => {
+    const rawUrl = 'src' in asset ? asset.src : asset.href;
+    const url = new URL(rawUrl, window.location.origin);
+    if (url.origin === window.location.origin) {
+      urls.add(`${url.pathname}${url.search}`);
+    }
+  });
+
+  return [...urls];
+}
+
+async function cacheCurrentAppShell() {
+  const registration = await navigator.serviceWorker.ready;
+  registration.active?.postMessage({ type: 'CACHE_URLS', urls: collectCurrentAppShellUrls() });
 }
 
 export function registerServiceWorker(onChange: (state: ServiceWorkerUiState) => void) {
@@ -44,6 +75,7 @@ export function registerServiceWorker(onChange: (state: ServiceWorkerUiState) =>
     try {
       const registration = await navigator.serviceWorker.register('/sw.js');
       onChange({ supported: true, enabled: true, registered: true, updateAvailable: false, registration });
+      void cacheCurrentAppShell();
 
       registration.addEventListener('updatefound', () => {
         const installing = registration.installing;

@@ -1,5 +1,21 @@
-const CACHE_NAME = 'pwa-demo-v1';
-const APP_SHELL = ['/', '/index.html', '/manifest.webmanifest'];
+const CACHE_NAME = 'pwa-demo-v2';
+const APP_SHELL = [
+  '/',
+  '/index.html',
+  '/manifest.webmanifest',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
+  '/icons/maskable-icon-512.png',
+];
+
+function sameOriginUrl(value) {
+  try {
+    const url = new URL(value, self.location.origin);
+    return url.origin === self.location.origin ? `${url.pathname}${url.search}` : null;
+  } catch {
+    return null;
+  }
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)));
@@ -18,6 +34,11 @@ self.addEventListener('message', (event) => {
   if (event.data?.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }
+
+  if (event.data?.type === 'CACHE_URLS' && Array.isArray(event.data.urls)) {
+    const urls = [...new Set(event.data.urls.map(sameOriginUrl).filter(Boolean))];
+    event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(urls)));
+  }
 });
 
 self.addEventListener('fetch', (event) => {
@@ -35,7 +56,10 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put('/index.html', copy));
           return response;
         })
-        .catch(() => caches.match('/index.html')),
+        .catch(async () => {
+          const cached = await caches.match('/index.html');
+          return cached ?? new Response('Offline page is not cached yet.', { status: 503 });
+        }),
     );
     return;
   }
@@ -51,13 +75,18 @@ self.addEventListener('fetch', (event) => {
         return cached;
       }
 
-      return fetch(request).then((response) => {
-        if (response.ok) {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-        }
-        return response;
-      });
+      return fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+          }
+          return response;
+        })
+        .catch(async () => {
+          const cached = await caches.match(request);
+          return cached ?? new Response('Resource is not cached for offline use.', { status: 503 });
+        });
     }),
   );
 });

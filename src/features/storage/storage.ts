@@ -11,15 +11,28 @@ export type DemoRecord = {
 };
 
 export function storageSupport(): FeatureSupport {
-  return 'localStorage' in window && 'indexedDB' in window ? 'supported' : 'unsupported';
+  try {
+    return window.localStorage && window.indexedDB ? 'supported' : 'unsupported';
+  } catch {
+    return 'unsupported';
+  }
 }
 
-export function loadDraft() {
-  return localStorage.getItem(DRAFT_KEY) ?? '';
+export function loadDraft(): FeatureResult<string> {
+  try {
+    return { ok: true, data: localStorage.getItem(DRAFT_KEY) ?? '' };
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : 'Could not read localStorage.' };
+  }
 }
 
-export function saveDraft(value: string) {
-  localStorage.setItem(DRAFT_KEY, value);
+export function saveDraft(value: string): FeatureResult<{ saved: boolean }> {
+  try {
+    localStorage.setItem(DRAFT_KEY, value);
+    return { ok: true, data: { saved: true } };
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : 'Could not write localStorage.' };
+  }
 }
 
 function openDb(): Promise<IDBDatabase> {
@@ -82,6 +95,10 @@ export async function listRecords(): Promise<FeatureResult<DemoRecord[]>> {
 }
 
 export async function clearRecords(): Promise<FeatureResult<{ cleared: boolean }>> {
+  if (storageSupport() === 'unsupported') {
+    return { ok: false, error: 'localStorage or IndexedDB is not supported.' };
+  }
+
   try {
     localStorage.removeItem(DRAFT_KEY);
     await withStore('readwrite', (store) => store.clear());

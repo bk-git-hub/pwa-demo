@@ -26,8 +26,12 @@ export async function shareDemo(): Promise<FeatureResult<ShareResult>> {
   }
 
   if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(shareData.url);
-    return { ok: true, data: { mode: 'clipboard-fallback', sharedAt: new Date().toISOString() } };
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+      return { ok: true, data: { mode: 'clipboard-fallback', sharedAt: new Date().toISOString() } };
+    } catch (error) {
+      return { ok: false, error: error instanceof Error ? error.message : 'Clipboard fallback failed.' };
+    }
   }
 
   return { ok: false, error: 'Web Share and clipboard fallback are both unavailable.' };

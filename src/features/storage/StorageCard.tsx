@@ -14,9 +14,12 @@ import {
 } from './storage';
 
 export function StorageCard() {
-  const [note, setNote] = useState(() => loadDraft());
+  const [note, setNote] = useState(() => loadDraft().data ?? '');
   const [records, setRecords] = useState<DemoRecord[]>([]);
-  const [result, setResult] = useState<FeatureResult<unknown>>();
+  const [result, setResult] = useState<FeatureResult<unknown> | undefined>(() => {
+    const draft = loadDraft();
+    return draft.ok ? undefined : draft;
+  });
   const support = storageSupport();
 
   const refresh = async () => {
@@ -33,7 +36,10 @@ export function StorageCard() {
 
   const updateNote = (value: string) => {
     setNote(value);
-    saveDraft(value);
+    const next = saveDraft(value);
+    if (!next.ok) {
+      setResult(next);
+    }
   };
 
   const save = async () => {
@@ -42,15 +48,22 @@ export function StorageCard() {
     setResult(next);
     if (next.ok) {
       setNote('');
-      saveDraft('');
+      const draft = saveDraft('');
+      if (!draft.ok) {
+        setResult(draft);
+        return;
+      }
       await refresh();
     }
   };
 
   const clear = async () => {
-    setResult(await clearRecords());
-    setRecords([]);
-    setNote('');
+    const next = await clearRecords();
+    setResult(next);
+    if (next.ok) {
+      setRecords([]);
+      setNote('');
+    }
   };
 
   return (
