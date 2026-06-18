@@ -1,0 +1,45 @@
+{
+  "name": "pwa-demo classroom Web API demo",
+  "short_name": "pwa-demo",
+  "description": "A classroom-friendly Progressive Web App demo for install, offline, camera, location, notifications, sharing, clipboard, and storage APIs.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
+  "categories": ["education", "developer", "utilities"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/maskable-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open Camera Demo",
+      "short_name": "Camera",
+      "description": "Try the camera permission and preview demo.",
+      "url": "/?feature=camera",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Check Offline Status",
+      "short_name": "Offline",
+      "description": "Open the network and offline behavior demo.",
+      "url": "/?feature=offline",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

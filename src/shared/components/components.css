@@ -1,0 +1,162 @@
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 28px;
+  border-radius: 999px;
+  padding: 4px 9px;
+  border: 1px solid transparent;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.statusPill span {
+  color: var(--muted);
+}
+
+.statusPill strong {
+  color: inherit;
+  font-weight: 700;
+}
+
+.pillGood {
+  color: var(--success);
+  border-color: rgba(21, 128, 61, 0.22);
+  background: #ecfdf3;
+}
+
+.pillWarn {
+  color: var(--warning);
+  border-color: rgba(180, 83, 9, 0.22);
+  background: #fff7ed;
+}
+
+.pillBad {
+  color: var(--danger);
+  border-color: rgba(185, 28, 28, 0.22);
+  background: #fef2f2;
+}
+
+.pillNeutral {
+  color: #475569;
+  border-color: rgba(100, 116, 139, 0.22);
+  background: #f1f5f9;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: white;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.primaryButton:hover:not(:disabled) {
+  background: var(--accent-strong);
+}
+
+.primaryButton.secondary {
+  color: var(--text);
+  border-color: var(--border);
+  background: #ffffff;
+}
+
+.primaryButton.secondary:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
+.primaryButton.danger {
+  background: var(--danger);
+}
+
+.primaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.buttonIcon {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+}
+
+.resultBox {
+  min-height: 84px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  background: #f8fafc;
+  overflow: hidden;
+}
+
+.resultBox strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.82rem;
+}
+
+.resultBox pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #27364d;
+  font-size: 0.82rem;
+}
+
+.resultBox.muted {
+  color: var(--muted);
+}
+
+.successResult {
+  border-color: rgba(21, 128, 61, 0.22);
+  background: #f0fdf4;
+}
+
+.errorResult {
+  border-color: rgba(185, 28, 28, 0.22);
+  background: #fef2f2;
+}
+
+.mediaPreview {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: #eef2f7;
+  object-fit: cover;
+}
+
+.textInput {
+  width: 100%;
+  min-height: 78px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  resize: vertical;
+  color: var(--text);
+  background: #fff;
+}
+
+.historyList {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.historyList li {
+  border-left: 3px solid var(--teal);
+  padding-left: 10px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}

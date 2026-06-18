@@ -1,0 +1,226 @@
+.appShell {
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(239, 246, 255, 0.85), rgba(248, 250, 252, 0) 360px),
+    var(--bg);
+}
+
+.appHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(215, 225, 238, 0.85);
+  background: rgba(248, 250, 252, 0.92);
+  backdrop-filter: blur(18px);
+}
+
+.headerInner,
+.content {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 76px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandMark {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 8px;
+  color: white;
+  font-weight: 800;
+  background: linear-gradient(135deg, #2563eb, #0f766e);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.16rem;
+  line-height: 1.1;
+}
+
+.brand p,
+.intro p,
+.apiCard p,
+.limitation {
+  color: var(--muted);
+}
+
+.brand p {
+  margin: 3px 0 0;
+  font-size: 0.88rem;
+}
+
+.headerStatus,
+.pillStack,
+.actions,
+.inlineControls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.content {
+  padding: 26px 0 56px;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.8fr);
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 22px;
+}
+
+.intro h2 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.65rem);
+  line-height: 1.08;
+}
+
+.intro p {
+  max-width: 780px;
+  margin: 16px 0 0;
+  font-size: 1.02rem;
+}
+
+.noticePanel {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.noticePanel strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.noticePanel ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.apiCard {
+  display: flex;
+  min-height: 360px;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.apiCard.green {
+  border-top-color: var(--success);
+}
+
+.apiCard.orange {
+  border-top-color: var(--warning);
+}
+
+.apiCard.red {
+  border-top-color: var(--danger);
+}
+
+.apiCard.teal {
+  border-top-color: var(--teal);
+}
+
+.apiCard.gray {
+  border-top-color: #64748b;
+}
+
+.apiCardHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+}
+
+.apiCard h2 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+
+.apiCard p {
+  margin: 0;
+  font-size: 0.93rem;
+}
+
+.apiCardBody {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.limitation {
+  margin-top: auto;
+  padding-top: 16px;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 880px) {
+  .headerInner,
+  .intro,
+  .apiCardHeader {
+    grid-template-columns: 1fr;
+  }
+
+  .headerInner {
+    display: grid;
+  }
+
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .headerInner,
+  .content {
+    width: min(100% - 22px, 1180px);
+  }
+
+  .headerStatus,
+  .pillStack,
+  .actions,
+  .inlineControls {
+    align-items: stretch;
+  }
+
+  .primaryButton {
+    width: 100%;
+  }
+
+  .apiCard {
+    min-height: auto;
+    padding: 16px;
+  }
+}
