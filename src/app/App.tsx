@@ -66,7 +66,7 @@ export function App() {
       <header className="appHeader">
         <div className="headerInner">
           <div className="brand">
-            <span className="brandMark">P</span>
+            <img className="brandMark" src="/icons/logo.svg" alt="pwa-demo 로고" />
             <div>
               <h1>pwa-demo</h1>
               <p>교실에서 바로 쓰는 PWA 실습실</p>

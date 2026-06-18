@@ -18,6 +18,7 @@ const BASE_APP_SHELL = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
+  '/icons/logo.svg',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
   '/icons/maskable-icon-512.png',

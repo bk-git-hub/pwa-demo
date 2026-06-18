@@ -63,11 +63,12 @@ Vercel도 배포된 사이트에 HTTPS를 기본으로 제공합니다.
 
 placeholder 아이콘은 `public/icons`에 있습니다.
 
+- `logo.svg`
 - `icon-192.png`
 - `icon-512.png`
 - `maskable-icon-512.png`
 
-`public/manifest.webmanifest`가 이 파일들을 참조합니다. 같은 파일명으로 이미지를 교체하거나, manifest의 `icons` 경로를 수정하면 됩니다.
+`logo.svg`는 앱 헤더와 favicon에 쓰이고, `public/manifest.webmanifest`가 설치 아이콘용 PNG 파일들을 참조합니다. 같은 파일명으로 이미지를 교체하거나, manifest의 `icons` 경로를 수정하면 됩니다.
 
 ## manifest 수정
 

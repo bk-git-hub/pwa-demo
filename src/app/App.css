@@ -35,15 +35,15 @@
 }
 
 .brandMark {
-  display: grid;
   width: 40px;
   height: 40px;
-  place-items: center;
+  flex: 0 0 40px;
+  object-fit: contain;
+  padding: 3px;
   border-radius: 8px;
-  color: white;
-  font-weight: 800;
-  background: linear-gradient(135deg, #2563eb, #0f766e);
-  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+  border: 1px solid rgba(215, 225, 238, 0.95);
+  background: #ffffff;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
 }
 
 .brand h1 {
