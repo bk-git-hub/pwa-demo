@@ -7,17 +7,27 @@ export type CapturedImage = {
   capturedAt: string;
 };
 
+export type CameraFacingMode = 'user' | 'environment';
+
+export const CAMERA_FACING_LABELS: Record<CameraFacingMode, string> = {
+  user: '전면',
+  environment: '후면',
+};
+
 export function cameraSupport(): FeatureSupport {
   return typeof navigator.mediaDevices?.getUserMedia === 'function' ? 'supported' : 'unsupported';
 }
 
-export async function startCamera(): Promise<FeatureResult<MediaStream>> {
+export async function startCamera(facingMode: CameraFacingMode): Promise<FeatureResult<MediaStream>> {
   if (cameraSupport() === 'unsupported') {
     return { ok: false, error: '이 브라우저는 Camera API를 지원하지 않습니다.' };
   }
 
   try {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: facingMode } },
+      audio: false,
+    });
     return { ok: true, data: stream };
   } catch (error) {
     return { ok: false, error: error instanceof Error ? error.message : '카메라 권한 요청에 실패했습니다.' };

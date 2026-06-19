@@ -89,6 +89,51 @@
   place-items: center;
 }
 
+.fieldGroup {
+  display: grid;
+  gap: 8px;
+}
+
+.fieldLabel {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.segmentedControl {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3px;
+  width: min(100%, 260px);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+  background: #f8fafc;
+}
+
+.segmentButton {
+  min-height: 34px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.segmentButton.selected {
+  color: #ffffff;
+  background: var(--accent);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.2);
+}
+
+.segmentButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
 .resultBox {
   min-height: 84px;
   border: 1px solid var(--border);
