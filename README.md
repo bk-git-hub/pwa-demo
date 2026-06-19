@@ -70,6 +70,16 @@ placeholder 아이콘은 `public/icons`에 있습니다.
 
 `logo.svg`는 앱 헤더와 favicon에 쓰이고, `public/manifest.webmanifest`가 설치 아이콘용 PNG 파일들을 참조합니다. 같은 파일명으로 이미지를 교체하거나, manifest의 `icons` 경로를 수정하면 됩니다.
 
+SVG만 바꾸면 설치 아이콘용 PNG는 그대로 남습니다. 학생들이 자기 로고로 바꿀 때는 `logo.svg`, `icon-192.png`, `icon-512.png`, `maskable-icon-512.png`를 같은 이름으로 함께 교체하는 흐름이 가장 단순합니다.
+
+## 앱 이름 바꾸기
+
+학생 프로젝트 이름으로 바꾸려면 다음 파일을 같이 확인합니다.
+
+- `public/manifest.webmanifest`: `name`, `short_name`, `description`
+- `index.html`: `<title>`과 `description` meta 태그
+- `src/app/App.tsx`: 헤더의 `<h1>`과 보조 문구
+
 ## manifest 수정
 
 `public/manifest.webmanifest`에서 다음 값을 바꿔 볼 수 있습니다.
