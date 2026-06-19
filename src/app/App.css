@@ -52,16 +52,10 @@
   line-height: 1.1;
 }
 
-.brand p,
 .intro p,
 .apiCard p,
 .limitation {
   color: var(--muted);
-}
-
-.brand p {
-  margin: 3px 0 0;
-  font-size: 0.88rem;
 }
 
 .headerStatus,
