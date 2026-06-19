@@ -88,20 +88,9 @@ export function App() {
       <main className="content">
         <section className="intro">
           <div>
-            <h2>설치형 PWA와 브라우저 Web API를 한 화면에서 실습합니다.</h2>
-            <p>
-              저장소를 클론하고 HTTPS로 배포한 뒤 모바일에서 설치해 보세요. 성공, 오류, 권한, 지원 여부,
-              정리(cleanup)까지 학생들이 눈으로 확인할 수 있게 구성했습니다.
-            </p>
+            <h2>PWA와 Web API 기능들</h2>
+            <p>설치, 오프라인, 카메라, 위치, 알림, 공유, 클립보드, 저장소 기능을 한 화면에서 확인합니다.</p>
           </div>
-          <aside className="noticePanel" aria-label="브라우저 보안 안내">
-            <strong>수업 전 확인</strong>
-            <ul>
-              <li>대부분의 API는 HTTPS가 필요하고, localhost는 보통 안전한 환경으로 취급됩니다.</li>
-              <li>Netlify와 Vercel은 배포 후 HTTPS를 기본으로 제공합니다.</li>
-              <li>지원하지 않는 브라우저에서도 앱이 깨지지 않고 안내를 보여줍니다.</li>
-            </ul>
-          </aside>
         </section>
 
         <section className="cardGrid" aria-label="Web API 실습 카드">

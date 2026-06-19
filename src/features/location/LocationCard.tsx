@@ -11,6 +11,7 @@ import {
   watchLocation,
   type LocationReading,
 } from './location';
+import { LocationMap } from './LocationMap';
 
 export function LocationCard() {
   const [permission, setPermission] = useState<PermissionStateLabel>('unknown');
@@ -59,12 +60,13 @@ export function LocationCard() {
     <ApiCard
       id="location"
       title="위치 / GPS"
-      description="현재 좌표를 요청하고, 선택적으로 실시간 위치 변화를 watchPosition으로 확인합니다."
+      description="현재 좌표를 요청하고, OpenStreetMap 지도와 실시간 위치 변화를 watchPosition으로 확인합니다."
       support={support}
       permission={permission}
-      note="localhost를 제외하면 HTTPS가 필요합니다. 브라우저 설정이나 Permissions Policy가 접근을 막을 수 있습니다."
+      note="지도 표시는 OpenStreetMap embed를 사용하므로 별도 API 키가 필요 없습니다. 실제 제품에서는 지도 제공자의 이용 약관과 트래픽 제한을 확인하세요."
       tone="green"
     >
+      <LocationMap reading={reading} />
       <div className="actions">
         <PrimaryButton disabled={support === 'unsupported' || loading} onClick={getLocation}>
           {loading ? '위치 확인 중...' : '현재 위치 가져오기'}

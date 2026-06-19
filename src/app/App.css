@@ -79,10 +79,6 @@
 }
 
 .intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.8fr);
-  gap: 24px;
-  align-items: end;
   margin-bottom: 22px;
 }
 
@@ -97,26 +93,6 @@
   max-width: 780px;
   margin: 16px 0 0;
   font-size: 1.02rem;
-}
-
-.noticePanel {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px;
-  background: #ffffff;
-  box-shadow: var(--shadow);
-}
-
-.noticePanel strong {
-  display: block;
-  margin-bottom: 8px;
-}
-
-.noticePanel ul {
-  margin: 0;
-  padding-left: 18px;
-  color: var(--muted);
-  font-size: 0.94rem;
 }
 
 .cardGrid {
@@ -188,7 +164,6 @@
 
 @media (max-width: 880px) {
   .headerInner,
-  .intro,
   .apiCardHeader {
     grid-template-columns: 1fr;
   }
